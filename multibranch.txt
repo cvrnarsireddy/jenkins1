@@ -1,0 +1,37 @@
+pipeline 
+{
+  agent any
+        stages{
+        stage('deploy')
+        {
+        steps
+        {
+        sh "echo this is the deploy stage"
+        }
+        }
+        stage ('test')
+        {
+        parallel{
+               stage('testing1')
+        {
+        when {
+                branch 'master'
+            }
+        steps{
+       sh "echo this is a testing 1 stage"
+}
+}
+stage ('testing2')
+{
+ when {
+                branch 'master'
+            }
+steps
+{
+    sh "echo this is testing 2 stage"
+}
+}
+}
+}
+}
+}
